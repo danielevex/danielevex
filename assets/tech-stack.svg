@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="150" viewBox="0 0 1100 150" role="img" aria-labelledby="title desc">
+  <title id="title">Daniele technical stack</title>
+  <desc id="desc">Rust, Tauri, TypeScript, React, SQLite, Local LLMs, GGUF, llama.cpp and AI Agents</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#161b22"/>
+    </linearGradient>
+  </defs>
+  <rect width="1100" height="150" rx="18" fill="url(#bg)" stroke="#30363d"/>
+  <text x="40" y="42" fill="#f0f6fc" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Desktop Engineering + Local AI</text>
+  <text x="40" y="69" fill="#8b949e" font-family="Arial, Helvetica, sans-serif" font-size="14">Practical software · local-first architecture · privacy · automation</text>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" text-anchor="middle">
+    <rect x="40" y="92" width="82" height="32" rx="8" fill="#21262d" stroke="#484f58"/><text x="81" y="113" fill="#f0f6fc">Rust</text>
+    <rect x="132" y="92" width="82" height="32" rx="8" fill="#21262d" stroke="#484f58"/><text x="173" y="113" fill="#f0f6fc">Tauri</text>
+    <rect x="224" y="92" width="106" height="32" rx="8" fill="#21262d" stroke="#484f58"/><text x="277" y="113" fill="#f0f6fc">TypeScript</text>
+    <rect x="340" y="92" width="82" height="32" rx="8" fill="#21262d" stroke="#484f58"/><text x="381" y="113" fill="#f0f6fc">React</text>
+    <rect x="432" y="92" width="82" height="32" rx="8" fill="#21262d" stroke="#484f58"/><text x="473" y="113" fill="#f0f6fc">SQLite</text>
+    <rect x="524" y="92" width="112" height="32" rx="8" fill="#21262d" stroke="#484f58"/><text x="580" y="113" fill="#f0f6fc">Local LLMs</text>
+    <rect x="646" y="92" width="82" height="32" rx="8" fill="#21262d" stroke="#484f58"/><text x="687" y="113" fill="#f0f6fc">GGUF</text>
+    <rect x="738" y="92" width="104" height="32" rx="8" fill="#21262d" stroke="#484f58"/><text x="790" y="113" fill="#f0f6fc">llama.cpp</text>
+    <rect x="852" y="92" width="112" height="32" rx="8" fill="#21262d" stroke="#484f58"/><text x="908" y="113" fill="#f0f6fc">AI Agents</text>
+  </g>
+</svg>
