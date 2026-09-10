@@ -1,30 +1,33 @@
 # Hi, I'm Daniele 👋
 
-### IT Technical Assistant · Desktop Applications · Local AI · Workflow Automation
+### IT Technical Assistant · Desktop Apps · Local AI
 
 ![Technical stack](./assets/tech-stack.svg)
 
-I build practical software with a focus on **desktop applications, local-first architectures, AI integration, privacy and workflow automation**.
+I build practical software focused on **desktop applications, local-first architectures, AI integration, privacy and workflow automation**.
 
-A significant part of my current development work lives in private repositories. I keep those repositories private when the source code or project context should not be published, while presenting only non-sensitive technical information here.
+A significant part of my current development work lives in private repositories. I keep source code private where the project context requires it, while presenting non-sensitive technical information here.
 
 ---
 
 ## 🚀 Selected Work
 
-### ✍️ Romanziere Studio `🔒 Private`
+### ✍️ Romanziere Studio
+
+<img src="./assets/private-project.svg" alt="Private project" height="24">
 
 Local-first desktop software for structured writing and AI-assisted creative workflows.
 
-**Focus:** desktop engineering · local data · local AI · structured workflows
-
+**Focus:** desktop engineering · local data · local AI · structured workflows  
 **Stack:** `Rust` · `Tauri` · `React` · `TypeScript` · `SQLite` · `llama.cpp` · `GGUF`
 
 🟢 **Active development**
 
 ---
 
-### 🛡️ Administrative Workflow Application `🔒 Private`
+### 🛡️ Administrative Workflow Application
+
+<img src="./assets/private-project.svg" alt="Private project" height="24">
 
 Desktop application prototype focused on structured local workflows, access control, traceability and data integrity.
 
@@ -36,7 +39,9 @@ Desktop application prototype focused on structured local workflows, access cont
 
 ---
 
-### 📖 Digital Reading Experiments `🔒 Private`
+### 📖 Digital Reading Experiments
+
+<img src="./assets/private-project.svg" alt="Private project" height="24">
 
 Experimental projects exploring modern reading interfaces, EPUB workflows and component-based frontend design.
 
@@ -56,15 +61,11 @@ Public fork of **KGAudioLab/K.G.Studio**, used as an experimental environment fo
 
 ---
 
-## 🧠 Current Technical Focus
-
-`AI Agents` · `Local LLMs` · `llama.cpp` · `GGUF` · `Rust` · `Tauri` · `React` · `TypeScript` · `SQLite` · `Local-First Software` · `Offline AI` · `Workflow Automation`
-
----
-
-## 🔐 Private repositories
+## 🔐 Private repositories, visible activity
 
 Private repositories are used when a project contains work-related context, experimental intellectual property or material that should not be published openly.
+
+**Activity from private repositories is included in my GitHub contribution graph**, while repository names and contents remain private.
 
 Where confidentiality permits, architecture, demonstrations and selected technical details can be discussed during an evaluation.
 
