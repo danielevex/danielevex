@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#182d34">
   <meta name="description" content="Cozy Paw Worlds — esplora la piazzetta dei mondi di Cozy Paw Studio in 3D, anche da smartphone.">
-  <title>Cozy Paw Worlds · The Little Crossroads</title>
+  <title>Cozy Paw Worlds · The Little Crossroads M2</title>
   <style>
 :root { --ink:#fff8e9; --forest:#20393b; --glass:rgba(20,43,44,.64); --line:rgba(255,250,231,.23); --gold:#e5c28d; --cream:#ffefd3; font-family:'Trebuchet MS',system-ui,sans-serif; color:var(--ink); color-scheme:dark; }
 * {box-sizing:border-box} html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#7899a7} body{overscroll-behavior:none;-webkit-user-select:none;user-select:none} button,select,a{font:inherit} button{cursor:pointer} #world{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none;background:linear-gradient(#81a9c8 0%,#dfc6a1 80%)}
@@ -21,6 +21,7 @@
 @media(max-width:380px){.brand-text strong{font-size:16px}.brand-text small{font-size:6px}.fps{display:none}.hud-bottom{bottom:calc(92px + env(safe-area-inset-bottom))}.place-label h1{font-size:28px}.joystick{width:91px;height:91px;bottom:calc(164px + env(safe-area-inset-bottom))}.joystick-knob{top:25px;left:25px;width:41px;height:41px}.world-pill{padding:7px 11px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}.grain{opacity:0}}
 
+.coral-cta{transition:transform .16s,filter .16s}.coral-cta:hover{filter:brightness(1.1)}@media(max-width:650px){.coral-cta{margin-left:0!important;margin-top:8px!important;padding:11px 15px!important}}
 </style>
 </head>
 <body>
@@ -39,7 +40,7 @@
     </div>
   </header>
 
-  <div class="chapter-pill"><span class="pin-icon">✧</span> CHAPTER 01 <span class="chapter-line"></span> THE LITTLE CROSSROADS</div>
+  <div class="chapter-pill"><span class="pin-icon">✧</span> CHAPTER 01 <span class="chapter-line"></span> THE LITTLE CROSSROADS · M2</div>
   <div class="crosshair" aria-hidden="true"><span></span><span></span></div>
   <div class="portal-markers" id="portalMarkers" aria-hidden="true"></div>
 
@@ -73,11 +74,11 @@
 
   <section class="welcome" id="welcome" aria-labelledby="welcomeTitle">
     <div class="welcome-card">
-      <div class="welcome-overline">AN INTERACTIVE STORYBOOK WORLD <span>✦</span> COZY PAW STUDIO</div>
+      <div class="welcome-overline">AN INTERACTIVE STORYBOOK WORLD <span>✦</span> COZY PAW STUDIO · M2</div>
       <div class="welcome-illustration" aria-hidden="true"><span class="ill-star i1">✧</span><span class="ill-star i2">✦</span><span class="ill-tree">🌳</span><span class="ill-house">⌂</span><span class="ill-paw">🐾</span></div>
       <h2 id="welcomeTitle">Every story begins<br>with a <em>little wonder.</em></h2>
-      <p>Una piazzetta incantata, quattro avventure da scoprire. Esplora il mondo in 3D: dal telefono o dal computer.</p>
-      <button id="start" class="start-btn" type="button">Entra nel mondo <span>✦</span></button>
+      <p>Una piazzetta incantata, quattro avventure da scoprire. Inizia qui e raggiungi la nuova Laguna delle Perle: un mondo sottomarino procedurale.</p>
+      <button id="start" class="start-btn" type="button">Esplora la piazzetta <span>✦</span></button> <a class="start-btn coral-cta" href="reef.html" style="background:#207c83;border-color:#207c83;margin-top:8px">🐚 Laguna 3D ↗</a>
       <div class="welcome-foot"><span>✧ Grafica adattiva</span><span>✧ Nessuna installazione</span><span>✧ Senza account</span></div>
     </div>
   </section>
@@ -91,7 +92,7 @@
       <p id="modalDescription"></p>
       <p class="coming-soon">✦ Il mondo esplorabile completo è una fase successiva. Questa demo contiene la piazzetta e quattro portali interattivi.</p>
       <div class="modal-actions">
-        <a id="modalLink" class="start-btn" href="https://www.cozypawstudio.com/" target="_blank" rel="noopener noreferrer">Scopri il libro ↗</a>
+        <a id="reefLink" class="start-btn" href="reef.html" style="background:#196f79;border-color:#196f79;display:none">🐠 Entra nella Laguna 3D ↗</a><a id="modalLink" class="start-btn" href="https://www.cozypawstudio.com/" target="_blank" rel="noopener noreferrer">Scopri il libro ↗</a>
         <button class="outline-btn" id="returnModal" type="button">Torna alla piazzetta</button>
       </div>
     </div>
@@ -105,6 +106,7 @@
 
   <script>
 /* Cozy Paw Worlds · Milestone 1 · Independent mobile-first WebGL demo
+ * Mobile first · original procedural environments · entry to the procedural Reef M3.
  * No external 3D framework, texture, font or model is required to render the scene.
  * Original code and original procedural scene — not a copy of Abyssal Garden.
  */
@@ -304,6 +306,53 @@
     const x=(rand()-.5)*105,y=15+rand()*10,z=-48-rand()*24;
     orb(x,y,z,2.1+rand()*3,.65+rand()*.9,1.0+rand()*2,C.cloud,0,4,8);
   }
+  // M2 art pass: hand-guided details with deterministic placement and zero additional draw calls.
+  // Engraved tile rows along the pitched roofs.
+  const roofDetail=(x,z,w,h,d)=>{
+    const y=h+.08,front=z+d/2+.34,back=z-d/2-.34,ridge=y+2.1;
+    const left=x-w/2-.34,right=x+w/2+.34;
+    for(let i=1;i<9;i++){
+      const t=i/9,lx=left+(x-left)*t,rx=right+(x-right)*t,yy=y+(ridge-y)*t+.023;
+      const seam=rgb(C.roof2,.84+rand()*.13);
+      quad([lx-.043,yy+.02,front],[lx+.043,yy+.02,front],[lx+.043,yy+.02,back],[lx-.043,yy+.02,back],seam);
+      quad([rx-.043,yy+.02,front],[rx+.043,yy+.02,front],[rx+.043,yy+.02,back],[rx-.043,yy+.02,back],seam);
+    }
+    for(let j=1;j<9;j++){
+      const zz=back+(front-back)*j/9;
+      box(x-.54,ridge-.13,zz,.045,.14,.045,rgb(C.roof2,.9));
+      box(x+.54,ridge-.13,zz,.045,.14,.045,rgb(C.roof2,.9));
+    }
+  };
+  [[-21,-8,6.3,4.3,6.1],[23,-9,6,4,6],[-30,-23,7.1,4.8,6.2],[31,-24,6.6,4.8,5.5],[-20,-47,7.3,5.1,5.5],[4,-55,6.2,4.2,5.2]].forEach(v=>roofDetail(...v));
+  // House doorsteps, climbing flower beds, low stone borders around the circular hub.
+  for(let i=0;i<94;i++){
+    const angle=i*Math.PI*2/94,radius=9.72;
+    const x=Math.cos(angle)*radius,z=-18+Math.sin(angle)*radius;
+    if(Math.abs(x)<2.55&&z>-18||WORLD.some(w=>Math.hypot(x-w.pos[0],z-w.pos[2])<4.7))continue;
+    box(x,.07,z,.52,.16,.4,rgb(C.darkStone,.93+rand()*.15));
+  }
+  // Light, polygonal plantings: larger blossoms near the path, micro-flowers along the grass.
+  for(let i=0;i<280;i++){
+    const x=(rand()-.5)*92,z=(rand()-.5)*91-11;
+    if(Math.hypot(x,z+18)<10.5||Math.abs(x)<3&&z>0&&z<17||WORLD.some(w=>Math.hypot(x-w.pos[0],z-w.pos[2])<4))continue;
+    const y=.06,h=.18+rand()*.35,leaf=rand()<.6?C.leaf:C.leaf2;
+    triangle([x-.15,y,z],[x+.15,y,z],[x,y+h,z],leaf,1);
+    if(i%3!==0){
+      const petal=i%4===0?C.lavender:i%4===1?C.flower:rgb(C.trim,.92);
+      orb(x,y+h,z,.12,.12,.12,petal,0,3,5);
+    }
+  }
+  // Handcrafted square-side props and bookish signposts.
+  for(const [x,z] of [[-10.5,-3],[11,-4],[-11,-37],[11,-36]]){
+    cylinder(x,.02,z,.31,.29,.86,C.bark,9);cylinder(x,.87,z,.41,.40,.18,C.darkStone,10);
+    for(let j=0;j<3;j++)orb(x+(rand()-.5)*.65,1.12,z+(rand()-.5)*.57,.14,.16,.14,j===0?C.lavender:C.flower,0,4,7);
+  }
+  for(const [x,z] of [[-4.7,6.2],[5.1,5.7]]){
+    cylinder(x,.05,z,.17,.13,2.7,C.bark,7);
+    box(x,2.65,z,.12,.11,1.7,C.bark);
+    box(x,2.4,z,.13,.9,1.5,C.plaster);
+    box(x,3.42,z,.15,.13,1.7,C.roof2);
+  }
   // The scene is intentionally only ONE main draw call, plus sky and fireflies.
   const vs=`attribute vec3 aPos;attribute vec3 aNormal;attribute vec3 aColor;attribute float aKind;
   uniform mat4 uVP;uniform float uTime;uniform float uMotion;varying vec3 vNormal;varying vec3 vColor;varying vec3 vWorld;
@@ -482,7 +531,7 @@
   const openWorld=(i)=>{
     selected=i;const w=WORLD[i];modalOpen=true;controls.keys.clear();controls.joyX=controls.joyY=0;knob.style.transform='translate(0,0)';
     $('modalEmoji').textContent=w.emoji;$('modalSeries').textContent=w.series;$('modalTitle').textContent=w.name;$('modalDescription').textContent=w.desc;
-    $('modalLink').href=w.link;$('modalLink').textContent=i===1?'Apri il Color Lab ↗':i===2?'Scopri i progetti ↗':'Scopri il libro ↗';
+    $('modalLink').href=w.link;$('modalLink').textContent=i===1?'Apri il Color Lab ↗':i===2?'Scopri i progetti ↗':'Scopri il libro ↗';$('reefLink').style.display=i===3?'inline-flex':'none';
     $('worldModal').hidden=false;$('closeModal').focus();
   };
   $('interact').addEventListener('click',()=>{if(nearWorld>=0)openWorld(nearWorld)});
