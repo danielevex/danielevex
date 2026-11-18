@@ -155,6 +155,7 @@ const CPW_COMPANIONS=await (async()=>{
      tick(x,y,z,frame){
        const t=frame[35];
        const dt=Number.isFinite(prevT)?Math.max(.005,Math.min(.14,t-prevT)):.016;
+       const swimSpeed=Number.isFinite(lastX)?Math.hypot(x-lastX,y-lastY,z-lastZ)/dt:0;
        prevT=t;
        const fx=frame[44],fz=frame[46],rx=frame[36],rz=frame[38];
        const dirs=[[-4.4,8.0,0.2],[0,11.5,0.4],[4.4,8.0,-0.1]];
@@ -176,7 +177,8 @@ const CPW_COMPANIONS=await (async()=>{
          // Reposition after camera teleports (waypoints), but swim naturally during movement.
          if(!Number.isFinite(pos[0])||distance>35){pos[0]=target[0];pos[1]=target[1];pos[2]=target[2];}
          else if(mode!=="stay"){
-           const a=1-Math.exp(-dt*(mode==="play"?2.6:1.4));
+           const rate=mode==="play"?2.6:1.25+Math.min(4.0,swimSpeed*.22);
+           const a=1-Math.exp(-dt*rate);
            for(let k=0;k<3;k++)pos[k]+=(target[k]-pos[k])*a;
          }
          positions.set([pos[0],pos[1],pos[2],1],i*4);
