@@ -83,14 +83,14 @@ const CPW_M4 = await (async()=>{
   const info=$("cpw-m4-status"),talk=$("cpw-m4-talk");
   const follow=$("cpw-m4-follow"),wait=$("cpw-m4-wait"),play=$("cpw-m4-play"),hello=$("cpw-m4-hello");
   const colors={
-    skin:[1.16,.66,.47],skinShade:[.96,.47,.33],cheek:[1.24,.40,.43],
-    hair:[.43,.20,.77],hairBright:[.78,.47,1.21],hairDark:[.28,.13,.55],
-    eyesWhite:[1.57,1.65,1.46],iris:[.10,.75,.79],irisDark:[.03,.15,.26],
-    lashes:[.13,.07,.16],shine:[1.85,1.91,1.73],mouth:[.63,.16,.25],
-    top:[1.30,.43,.84],topLight:[1.58,.76,1.05],shell:[1.45,.89,1.12],
-    tail:[1.22,.28,.75],scales:[1.44,.48,.93],tailDark:[.65,.17,.59],
-    fin:[1.54,.73,1.29],finLight:[1.87,1.15,1.50],
-    star:[1.54,.85,1.21],starLight:[2.0,1.52,1.71],pearl:[1.73,1.61,1.42]
+    skin:[.91,.52,.40],skinShade:[.84,.44,.34],cheek:[1.02,.36,.39],
+    hair:[.42,.22,.65],hairBright:[.62,.38,.91],hairDark:[.25,.14,.42],
+    eyesWhite:[1.20,1.24,1.21],iris:[.18,.61,.67],irisDark:[.045,.16,.24],
+    lashes:[.24,.14,.28],shine:[1.50,1.55,1.51],mouth:[.58,.23,.31],
+    top:[1.05,.39,.69],topLight:[1.20,.61,.89],shell:[1.20,.75,.95],
+    tail:[.91,.31,.64],scales:[1.04,.45,.75],tailDark:[.55,.20,.48],
+    fin:[1.07,.57,.96],finLight:[1.28,.80,1.12],
+    star:[1.16,.56,.82],starLight:[1.42,.90,1.12],pearl:[1.33,1.23,1.15]
   };
   const v=[],PI=Math.PI;
   const vec=(p,c,n,part)=>v.push(...p,...n,...c,part);
@@ -102,10 +102,12 @@ const CPW_M4 = await (async()=>{
   }
   function ell(x,y,z,rx,ry,rz,color,part=0,rows=9,sides=14){
     const pt=(i,j)=>{let a=i/rows*PI,b=j/sides*2*PI;return[x+rx*Math.sin(a)*Math.cos(b),y+ry*Math.cos(a),z+rz*Math.sin(a)*Math.sin(b)]};
+    const normal=p=>{let n=[(p[0]-x)/(rx*rx),(p[1]-y)/(ry*ry),(p[2]-z)/(rz*rz)];const l=Math.hypot(...n)||1;return n.map(v=>v/l)};
+    const smooth=(a,b,c)=>{for(const p of [a,b,c])vec(p,color,normal(p),part)};
     for(let i=0;i<rows;i++)for(let j=0;j<sides;j++){
       let a=pt(i,j),b=pt(i+1,j),c=pt(i+1,j+1),d=pt(i,j+1);
-      if(i)tri(a,b,d,color,part);
-      if(i<rows-1)tri(b,c,d,color,part);
+      if(i)smooth(a,b,d);
+      if(i<rows-1)smooth(b,c,d);
     }
   }
   function curve(points,radii,color,part=0,sides=7){
@@ -129,50 +131,51 @@ const CPW_M4 = await (async()=>{
     curve(p,Array.from({length:6},(_,i)=>r*(.85+.15*Math.sin(i/5*PI))),color,part,9);
     ell(...a,r,r,r,color,part,6,8);ell(...b,r*.95,r*.95,r*.95,color,part,6,8);
   }
-  // Canonical silhouette: large expressive face, violet curls, pink starfish.
-  ell(0,1.49,.01,.405,.455,.36,colors.skin,0,13,20);
-  ell(0,1.24,.075,.365,.32,.29,colors.skinShade,0,10,18); // cheeks / chin
-  ell(-.29,1.30,.21,.12,.105,.09,colors.cheek,0,7,10);
-  ell(.29,1.30,.21,.12,.105,.09,colors.cheek,0,7,10);
-  // Face forward is local positive Z. Eyes are genuinely volumetric.
+  // M4.1 ART PASS — unobstructed face, softer eyelids, controlled hair silhouette.
+  ell(0,1.52,-.018,.40,.47,.35,colors.skin,0,17,26);
+  ell(-.245,1.34,.25,.095,.065,.035,colors.cheek,0,8,12);
+  ell(.245,1.34,.25,.095,.065,.035,colors.cheek,0,8,12);
   for(let sign of [-1,1]){
-     ell(sign*.17,1.59,.319,.144,.172,.075,colors.lashes,0,9,14);
-     ell(sign*.17,1.585,.344,.118,.145,.072,colors.eyesWhite,0,10,14);
-     ell(sign*.172,1.578,.399,.079,.117,.052,colors.iris,0,9,12);
-     ell(sign*.174,1.57,.433,.046,.087,.031,colors.irisDark,0,7,12);
-     ell(sign*.154,1.626,.458,.024,.034,.019,colors.shine,0,6,9);
-     ell(sign*.198,1.54,.453,.011,.012,.01,colors.shine,0,5,8);
-     curve([[sign*.065,1.78,.37],[sign*.17,1.79,.405],[sign*.275,1.75,.368]],[.022,.028,.014],colors.lashes,0,7);
+     // Shallow eyes, not stacked protruding spheres.
+     ell(sign*.158,1.57,.294,.111,.124,.031,colors.lashes,0,11,16);
+     ell(sign*.158,1.571,.312,.099,.108,.025,colors.eyesWhite,0,11,16);
+     ell(sign*.161,1.569,.334,.070,.088,.021,colors.iris,0,10,16);
+     ell(sign*.161,1.568,.347,.045,.058,.015,colors.irisDark,0,10,14);
+     ell(sign*.143,1.601,.364,.018,.024,.009,colors.shine,0,7,9);
+     curve([[sign*.08,1.709,.292],[sign*.158,1.715,.323],[sign*.246,1.693,.292]],[.013,.017,.010],colors.lashes,0,8);
   }
-  ell(0,1.36,.372,.055,.038,.03,colors.skinShade,0,7,9);
-  ell(0,1.205,.341,.110,.065,.035,colors.mouth,0,6,12);
-  ell(0,1.220,.369,.075,.013,.008,colors.shine,0,4,7);
-  // The haircap and wavy locks are meshes, not screen-aligned cards.
-  ell(0,1.822,-.04,.472,.30,.405,colors.hair,2,9,16);
-  ell(-.31,1.71,.09,.18,.29,.3,colors.hairBright,2,7,11);
-  ell(.31,1.71,.09,.18,.29,.3,colors.hairDark,2,7,11);
-  for(let i=0;i<32;i++){
-    const t=(i/32)*2*PI,side=Math.cos(t),back=Math.sin(t);
-    const start=[Math.cos(t)*.31,1.86+Math.cos(t*2)*.06,Math.sin(t)*.29-.03];
-    const len=.62+((i*17)%9)/9*.58;
+  ell(0,1.38,.307,.045,.038,.024,colors.skinShade,0,8,12);
+  // Small smile instead of an oversized oval mouth.
+  curve([[-.068,1.249,.292],[0,1.237,.328],[.068,1.249,.292]],[.012,.016,.012],colors.mouth,0,8);
+  // Haircap set behind the face; forehead remains clear.
+  ell(0,1.886,-.092,.452,.26,.332,colors.hair,2,12,24);
+  // Side volume, kept outside the eyes.
+  ell(-.408,1.615,-.097,.145,.35,.245,colors.hairBright,2,10,15);
+  ell(.408,1.615,-.097,.145,.35,.245,colors.hairDark,2,10,15);
+  for(let i=0;i<26;i++){
+    const t=i/26*2*PI,side=Math.cos(t),back=Math.sin(t);
+    // No hanging coils over the eyes and mouth.
+    if(back>.15 && Math.abs(side)<.60)continue;
+    const root=[side*.32,1.90+.035*Math.sin(t*3),back*.285-.09];
+    const len=.63+((i*11)%9)/9*.43;
     const pts=[];
-    for(let j=0;j<=11;j++){
-      let u=j/11,off=Math.sin(u*PI*6+t*4.0)*(.045+.075*u);
-      pts.push([start[0]+side*(.12*u)+off*back,
-        start[1]-len*u,
-        start[2]+back*.14*u+off*side]);
+    for(let j=0;j<=10;j++){
+      let u=j/10;
+      let sway=Math.sin(u*PI*3.7+t*2)*(.028+.035*u);
+      pts.push([root[0]+side*.13*u+sway,root[1]-len*u,root[2]+back*.10*u]);
     }
-    curve(pts,Array.from({length:12},(_,j)=>.075*(1-.65*(j/11)**2)),
-      i%5===0?colors.hairBright:i%5===1?colors.hairDark:colors.hair,2,6);
+    curve(pts,Array.from({length:11},(_,j)=>.066*(1-.70*(j/10)**2)),
+      i%5===0?colors.hairBright:i%6===1?colors.hairDark:colors.hair,2,8);
   }
-  // 5-armed pink sea star located in hair, visible from the front.
-  let center=[-.37,1.98,.314];ell(...center,.105,.105,.062,colors.star,0,7,12);
+  // Signature pink five-point star on the violet hair.
+  const center=[-.344,1.975,.265];
+  ell(...center,.075,.075,.036,colors.star,0,8,13);
   for(let i=0;i<5;i++){
-    let a=i*2*PI/5+.1,end=[center[0]+Math.cos(a)*.20,center[1]+Math.sin(a)*.20,center[2]+.01];
-    capsule(center,end,.055,colors.star,0);
-    ell(...end,.045,.045,.025,colors.starLight,0,5,8);
+    let angle=i*2*PI/5+.2;
+    const end=[center[0]+Math.cos(angle)*.155,center[1]+Math.sin(angle)*.155,center[2]+.009];
+    capsule(center,end,.034,colors.star,0);
   }
-  ell(-.37,1.98,.384,.035,.035,.012,colors.pearl,0,5,8);
+  ell(-.337,1.97,.302,.025,.025,.009,colors.starLight,0,6,10);
   // Neck, bust, softly sculpted shoulders, shell top.
   ell(0,.80,.0,.315,.53,.254,colors.skin,0,12,18);
   ell(0,1.07,.04,.41,.215,.26,colors.skin,0,8,16);
@@ -183,30 +186,37 @@ const CPW_M4 = await (async()=>{
        ell(sign*.17+j*.05,.85+Math.cos(j*PI/4)*.10,.359,.035,.065,.023,
            j%2?colors.shell:colors.topLight,0,5,8);
      }
-     capsule([sign*.355,.96,0],[sign*.49,.66,.08],.105,colors.skin,0);
-     capsule([sign*.49,.66,.08],[sign*.57,.32,.17],.085,colors.skin,0);
-     ell(sign*.57,.29,.17,.103,.10,.088,colors.skin,0,7,10);
+     capsule([sign*.355,.96,0],[sign*.47,.66,.04],.078,colors.skin,0);
+     capsule([sign*.47,.66,.04],[sign*.52,.34,.12],.070,colors.skin,0);
+     ell(sign*.52,.30,.12,.077,.103,.064,colors.skin,0,9,12);
   }
   // Tail: tapered 3D organic body with visible iridescent scales.
   curve([[0,.53,.01],[0,.28,-.02],[.03,-.04,-.07],[.07,-.43,-.12],
     [.09,-.88,-.15],[.01,-1.27,-.10]],[.31,.30,.28,.23,.14,.08],colors.tail,1,18);
-  for(let row=0;row<11;row++){
-    let y=.33-row*.125,ry=.26*(1-row/14),z=.19*(1-row/15)+.008;
-    for(let col=-3;col<=3;col++){
-      let x=col*.065+(row%2)*.031;
-      if(Math.abs(x)>ry*.94)continue;
-      let nz=z*Math.sqrt(Math.max(.04,1-(x/Math.max(.05,ry))**2));
-      ell(x,y,nz+.065,.058,.065,.020,
-        (row+col)%3?colors.scales:colors.fin,1,5,7);
+  // Low-relief decorative scales, fewer and better integrated with the tail.
+  for(let row=0;row<10;row++){
+    const y=.32-row*.142,ry=.255*(1-row/14);
+    const rz=.19*(1-row/15);
+    for(let col=-2;col<=2;col++){
+      const x=col*.088+(row%2)*.043;
+      if(Math.abs(x)>ry*.9)continue;
+      const nz=rz*Math.sqrt(Math.max(.04,1-(x/Math.max(.055,ry))**2));
+      ell(x,y,nz+.049,.044,.046,.009,row%3===0?colors.fin:colors.scales,1,5,8);
     }
   }
-  // Fan-shaped, double-lobed translucent-looking fluke with 3D ribs.
+  // Sculpted smaller crescent fluke. Organic membrane instead of two blunt cylinders.
   for(let sign of [-1,1]){
-    let base=[sign*.015,-1.19,-.12],tip=[sign*.82,-1.58,-.04];
-    curve([base,[sign*.26,-1.40,-.08],[sign*.55,-1.61,-.04],tip],
-      [.095,.19,.14,.025],colors.fin,3,10);
-    curve([base,[sign*.30,-1.51,.005],tip],[.039,.035,.008],colors.finLight,3,7);
-    ell(sign*.43,-1.52,-.06,.29,.12,.07,colors.fin,3,7,12);
+    const root=[sign*.015,-1.23,-.105],tip=[sign*.68,-1.57,-.03];
+    const top=[sign*.48,-1.31,-.042],bottom=[sign*.47,-1.76,-.014];
+    const middle=[sign*.33,-1.51,.01];
+    // Double-sided fin membrane with branching rays, curved in depth.
+    for(const [a,b,c,shade] of [
+      [root,top,middle,colors.finLight],[top,tip,middle,colors.fin],
+      [root,middle,bottom,colors.fin],[middle,tip,bottom,colors.finLight]]){
+      tri(a,b,c,shade,3);tri(a,c,b,shade,3);
+    }
+    curve([root,[sign*.25,-1.43,.018],tip],[.06,.040,.015],colors.finLight,3,8);
+    curve([root,[sign*.27,-1.50,-.005],bottom],[.045,.033,.012],colors.fin,3,8);
   }
   // Shoulder pearls / optional bracelet. One eye-catching jewel at sternum.
   ell(0,.745,.317,.075,.077,.033,colors.pearl,0,7,10);
@@ -217,7 +227,7 @@ const CPW_M4 = await (async()=>{
   const uniforms=new Float32Array(8),rig=Y.createBuffer({size:32,usage:ee.UNIFORM|ee.COPY_DST});
   const rigLayout=Y.createBindGroupLayout({entries:[{binding:0,visibility:f0.VERTEX|f0.FRAGMENT,buffer:{type:"uniform"}}]});
   const rigBG=Y.createBindGroup({layout:rigLayout,entries:[{binding:0,resource:{buffer:rig}}]});
-  const wgsl="\nstruct G{vp:mat4x4f,sm:mat4x4f,cam:vec4f,right:vec4f,up:vec4f,fwd:vec4f,sun:vec4f,res:vec4f,mis:vec4f};\nstruct Pose{positionYaw:vec4f,behaviorTime:vec4f};\n@group(0) @binding(0) var<uniform> g:G;\n@group(1) @binding(0) var<uniform> pose:Pose;\nstruct Input{@location(0) p:vec3f,@location(1) n:vec3f,@location(2) col:vec3f,@location(3) part:f32};\nstruct Output{\n @builtin(position) clip:vec4f,\n @location(0) world:vec3f,\n @location(1) normal:vec3f,\n @location(2) col:vec3f,\n @location(3) @interpolate(flat) part:f32\n};\n@vertex fn vs(a:Input)->Output{\n let t=g.cam.w;\n var pos=a.p;var n=a.n;\n if(a.part>.5 && a.part<1.5){\n    let weight=(1.-smoothstep(-1.55,.3,pos.y));\n    pos.x+=sin(t*3.7+pos.y*3.0)*.24*weight;\n    pos.z+=cos(t*2.5+pos.y*2.2)*.10*weight;\n }\n if(a.part>1.5 && a.part<2.5){\n    let k=(1.-smoothstep(.4,2.2,pos.y));\n    pos.x+=sin(t*1.3+pos.y*3.)*.08*k;\n    pos.z+=sin(t*1.05+pos.y*2.)*.06*k;\n }\n if(a.part>2.5 && a.part<3.5){\n    pos.x+=sin(t*3.8+pos.y*2.8)*.23;\n }\n pos.y+=sin(t*1.4)*.09;\n let yaw=pose.positionYaw.w;let cy=cos(yaw);let sy=sin(yaw);\n let world=pose.positionYaw.xyz+vec3f(cy*pos.x+sy*pos.z,pos.y,-sy*pos.x+cy*pos.z);\n let norm=normalize(vec3f(cy*n.x+sy*n.z,n.y,-sy*n.x+cy*n.z));\n var o:Output;\n o.clip=g.vp*vec4f(world,1.);\n o.world=world;o.normal=norm;o.col=a.col;o.part=a.part;\n return o;\n}\n@fragment fn fs(a:Output)->@location(0) vec4f{\n let n=normalize(a.normal);\n let light=normalize(vec3f(.32,.88,-.35));\n let lambert=max(dot(n,light),0.);\n let view=normalize(g.cam.xyz-a.world);\n let rim=pow(1.-max(dot(n,view),0.),2.4);\n let ambient=.55+lambert*.70+rim*.32;\n var color=a.col*ambient;\n let d=distance(g.cam.xyz,a.world);\n let fog=clamp(1.-exp(-.020*d),0.,.78);\n color=mix(color,vec3f(.08,.40,.48),fog*.66);\n return vec4f(max(color,vec3f(0.)),1.);\n}";
+  const wgsl="\nstruct G{vp:mat4x4f,sm:mat4x4f,cam:vec4f,right:vec4f,up:vec4f,fwd:vec4f,sun:vec4f,res:vec4f,mis:vec4f};\nstruct Pose{positionYaw:vec4f,behaviorTime:vec4f};\n@group(0) @binding(0) var<uniform> g:G;\n@group(1) @binding(0) var<uniform> pose:Pose;\nstruct Input{@location(0) p:vec3f,@location(1) n:vec3f,@location(2) col:vec3f,@location(3) part:f32};\nstruct Output{\n @builtin(position) clip:vec4f,\n @location(0) world:vec3f,\n @location(1) normal:vec3f,\n @location(2) col:vec3f,\n @location(3) @interpolate(flat) part:f32\n};\n@vertex fn vs(a:Input)->Output{\n let t=g.cam.w;\n var pos=a.p;var n=a.n;\n if(a.part>.5 && a.part<1.5){\n    let weight=(1.-smoothstep(-1.55,.3,pos.y));\n    pos.x+=sin(t*3.7+pos.y*3.0)*.24*weight;\n    pos.z+=cos(t*2.5+pos.y*2.2)*.10*weight;\n }\n if(a.part>1.5 && a.part<2.5){\n    let k=(1.-smoothstep(.4,2.2,pos.y));\n    pos.x+=sin(t*1.3+pos.y*3.)*.08*k;\n    pos.z+=sin(t*1.05+pos.y*2.)*.06*k;\n }\n if(a.part>2.5 && a.part<3.5){\n    pos.x+=sin(t*3.8+pos.y*2.8)*.23;\n }\n pos.y+=sin(t*1.4)*.09;\n let yaw=pose.positionYaw.w;let cy=cos(yaw);let sy=sin(yaw);\n let world=pose.positionYaw.xyz+vec3f(cy*pos.x+sy*pos.z,pos.y,-sy*pos.x+cy*pos.z);\n let norm=normalize(vec3f(cy*n.x+sy*n.z,n.y,-sy*n.x+cy*n.z));\n var o:Output;\n o.clip=g.vp*vec4f(world,1.);\n o.world=world;o.normal=norm;o.col=a.col;o.part=a.part;\n return o;\n}\n@fragment fn fs(a:Output)->@location(0) vec4f{\n let n=normalize(a.normal);\n let light=normalize(vec3f(.32,.88,-.35));\n let lambert=max(dot(n,light),0.);\n let view=normalize(g.cam.xyz-a.world);\n let rim=pow(1.-max(dot(n,view),0.),2.4);\n let spec=pow(max(dot(n,normalize(light+view)),0.),24.)*.12;\n let ambient=.44+lambert*.65+rim*.20+spec;\n var color=a.col*ambient;\n let d=distance(g.cam.xyz,a.world);\n let fog=clamp(1.-exp(-.014*d),0.,.66);\n color=mix(color,vec3f(.065,.32,.39),fog*.55);\n return vec4f(max(color,vec3f(0.)),1.);\n}";
   const module=We(wgsl);
   const compiler=module.getCompilationInfo?await module.getCompilationInfo():null;
   if(compiler){
