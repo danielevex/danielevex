@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#073b52"><meta name="description" content="Cozy Paw Worlds — esplora una laguna procedurale delle sirenette, direttamente nel browser.">
 <title>Coral Reef Besties · La Laguna delle Perle — Cozy Paw Worlds</title>
 <style>
@@ -10,9 +10,10 @@
 header{position:fixed;z-index:4;top:max(13px,env(safe-area-inset-top));left:clamp(12px,3vw,35px);right:clamp(12px,3vw,35px);display:flex;align-items:center;justify-content:space-between;gap:9px}header a{color:var(--cream);text-decoration:none} .brand{font-family:Georgia,serif;font-size:clamp(16px,2.5vw,25px);text-shadow:0 2px 10px #003b52}.brand em{font-weight:400;color:#bcebd7}.actions{display:flex;align-items:center;gap:7px}.chip,.tool{border-radius:15px;color:var(--cream);padding:9px 12px;font-size:12px;white-space:nowrap}.tool{display:flex;align-items:center;gap:6px;min-height:38px}.small{font-size:10px;color:#d1eaddbd}.stat{font-variant-numeric:tabular-nums}.fpsmark{width:7px;height:7px;background:#90efc7;border-radius:50%;display:inline-block;margin-right:3px}
 .scene-title{position:fixed;z-index:3;left:clamp(16px,4vw,60px);top:clamp(79px,18vh,160px);max-width:min(480px,70vw);pointer-events:none;text-shadow:0 4px 22px #013847ad}.eyebrow{font-size:10px;font-weight:700;letter-spacing:2.6px;color:#c0fff1}.scene-title h1{font:400 clamp(35px,5vw,68px)/.98 Georgia,serif;margin:15px 0 10px;letter-spacing:-1.4px}.scene-title h1 em{color:#c2f6e5}.scene-title p{font-size:13px;line-height:1.5;color:#e7fffa;margin:0;max-width:360px}.bottom{position:fixed;z-index:4;bottom:max(18px,env(safe-area-inset-bottom));left:clamp(12px,3vw,35px);right:clamp(12px,3vw,35px);display:flex;align-items:end;justify-content:space-between;pointer-events:none;gap:10px}.bottom>*{pointer-events:auto}.bottom-info{border-radius:17px;padding:11px 14px;display:flex;align-items:center;gap:12px;font-size:11px}.bottom-info b{color:#b5f4e4}.minibtn{border:0;border-radius:12px;padding:11px 13px;background:#fce2ac;color:#1e4e51;font-weight:700;font-size:12px;box-shadow:0 5px 20px #013f5578}.bottom-buttons{display:flex;gap:7px}
 #joystick{display:none;position:fixed;z-index:5;bottom:max(83px,calc(env(safe-area-inset-bottom) + 77px));left:22px;width:119px;height:119px;border:2px solid #e6ffe772;background:#c5fff21a;border-radius:50%;touch-action:none;box-shadow:0 5px 22px #00425555}#joyKnob{width:49px;height:49px;border-radius:50%;background:#d5fff8ac;border:2px solid #fff7ddab;position:absolute;left:calc(50% - 24.5px);top:calc(50% - 24.5px);pointer-events:none}.lookhint{display:none;position:fixed;z-index:2;bottom:130px;right:25px;pointer-events:none;color:#f5fff4b8;font-size:11px;text-shadow:0 2px 8px #064257}.crosshair{position:fixed;z-index:2;left:50%;top:49%;width:12px;height:12px;transform:translate(-50%,-50%);pointer-events:none;opacity:.7}.crosshair:before,.crosshair:after{content:'';position:absolute;left:5px;top:0;width:1px;height:12px;background:#eeffed;box-shadow:0 1px 5px #003d49}.crosshair:after{transform:rotate(90deg)}
-.overlay{position:fixed;z-index:10;inset:0;display:grid;place-items:center;padding:16px;background:#022e46b1;backdrop-filter:blur(13px)}[hidden]{display:none!important}.welcome{width:min(500px,100%);text-align:center;color:#24535c;background:linear-gradient(155deg,#fff7e7,#dcefdc);border:1px solid #fff;border-radius:27px;padding:29px clamp(20px,5vw,45px);box-shadow:0 25px 90px #002c45b5}.art{font-size:clamp(52px,11vw,85px);margin:10px auto 18px;letter-spacing:7px;filter:drop-shadow(0 6px 8px #2b91a744)}.welcome .eyebrow{color:#438a8e}.welcome h2{font:400 clamp(29px,5.5vw,43px)/1.12 Georgia,serif;margin:7px 0 17px}.welcome h2 em{color:#1e9ca2}.welcome p{font-size:13px;line-height:1.75;color:#54767b}.start{margin-top:14px;background:#106a75;border:0;padding:14px 22px;border-radius:13px;color:white;font-weight:700}.welcome small{display:block;color:#7d989a;margin-top:15px;font-size:10px}.panel{position:fixed;z-index:7;top:68px;right:12px;width:min(300px,calc(100vw - 24px));padding:18px;border-radius:18px}.panel h2{font:400 23px Georgia,serif;margin:0 0 15px}.panel label{font-size:12px}.panel select{margin-top:8px;padding:9px;background:#075064;color:var(--cream);border:1px solid var(--line);border-radius:10px;width:100%}.panel p{font-size:11px;color:#ddf5ee;line-height:1.5}.error{position:fixed;z-index:20;inset:0;display:grid;place-items:center;background:#083c4a;padding:25px;text-align:center}.error a{color:#f9e0a0}.poi{z-index:4;position:fixed;left:50%;top:46%;transform:translate(-50%,-50%);padding:9px 13px;font-size:12px;border-radius:17px;white-space:nowrap;pointer-events:none;color:#fff6e6}
+.overlay{position:fixed;z-index:10;inset:0;display:grid;place-items:center;padding:16px;background:#022e46b1;backdrop-filter:blur(13px);overflow-y:auto;overscroll-behavior:contain}[hidden]{display:none!important}.welcome{width:min(500px,100%);max-height:calc(100dvh - 24px);overflow-y:auto;text-align:center;color:#24535c;background:linear-gradient(155deg,#fff7e7,#dcefdc);border:1px solid #fff;border-radius:27px;padding:29px clamp(20px,5vw,45px);box-shadow:0 25px 90px #002c45b5}.art{font-size:clamp(52px,11vw,85px);margin:10px auto 18px;letter-spacing:7px;filter:drop-shadow(0 6px 8px #2b91a744)}.welcome .eyebrow{color:#438a8e}.welcome h2{font:400 clamp(29px,5.5vw,43px)/1.12 Georgia,serif;margin:7px 0 17px}.welcome h2 em{color:#1e9ca2}.welcome p{font-size:13px;line-height:1.75;color:#54767b}.start{margin-top:14px;background:#106a75;border:0;padding:14px 22px;border-radius:13px;color:white;font-weight:700}.welcome small{display:block;color:#7d989a;margin-top:15px;font-size:10px}.panel{position:fixed;z-index:7;top:68px;right:12px;width:min(300px,calc(100vw - 24px));padding:18px;border-radius:18px}.panel h2{font:400 23px Georgia,serif;margin:0 0 15px}.panel label{font-size:12px}.panel select{margin-top:8px;padding:9px;background:#075064;color:var(--cream);border:1px solid var(--line);border-radius:10px;width:100%}.panel p{font-size:11px;color:#ddf5ee;line-height:1.5}.error{position:fixed;z-index:20;inset:0;display:grid;place-items:center;background:#083c4a;padding:25px;text-align:center}.error a{color:#f9e0a0}.poi{z-index:4;position:fixed;left:50%;top:46%;transform:translate(-50%,-50%);padding:9px 13px;font-size:12px;border-radius:17px;white-space:nowrap;pointer-events:none;color:#fff6e6}
 @media(pointer:coarse){#joystick,.lookhint{display:block}.scene-title{top:80px}.scene-title h1{font-size:clamp(28px,7vw,44px)}.scene-title p{font-size:11px}.bottom{bottom:max(13px,env(safe-area-inset-bottom))}.bottom-info{max-width:190px;font-size:10px}.bottom-buttons{margin-left:auto}.chip{font-size:11px}}
 @media(max-width:650px){.brand{font-size:17px}.scene-title{max-width:70vw}.scene-title p{max-width:250px}#fpsLabel{display:none}.bottom-info{display:none}.actions{gap:5px}.tool{padding:9px 10px}.poi{top:48%}.welcome{padding:23px}.lookhint{bottom:105px;right:12px}}
+@media(max-height:500px){.overlay{padding:7px}.welcome{width:min(640px,100%);padding:12px 17px;max-height:calc(100dvh - 14px)}.welcome .art{display:none}.welcome h2{font-size:clamp(21px,4.5vh,28px);margin:4px 0 5px}.welcome p{font-size:11px;line-height:1.32;margin:6px 0}.welcome small{margin-top:6px}.welcome .start{margin-top:6px;padding:9px 14px}.welcome .eyebrow{font-size:8px}}
 @media(prefers-reduced-motion:reduce){.art{filter:none}}
 </style>
 </head>
@@ -32,13 +33,115 @@ header{position:fixed;z-index:4;top:max(13px,env(safe-area-inset-top));left:clam
 <div class="bottom"><div class="bottom-info glass"><span>🫧 <strong id="biomeLabel">Laguna luminosa</strong></span><span class="stat" id="seedLabel">Seed —</span></div><div class="bottom-buttons"><button class="minibtn" id="shareBtn" type="button">Condividi seed</button><a class="minibtn" style="text-decoration:none" href="index.html">↶ Piazzetta</a></div></div>
 <section class="panel glass" id="settings" hidden><h2>Esplorazione</h2><label for="quality">Qualità grafica</label><select id="quality"><option value="auto">Automatica · consigliata</option><option value="high">Alta</option><option value="medium">Media</option><option value="low">Bassa</option></select><p>Il fondale, i coralli e i pesci sono generati da un seed. Le zone intorno a te vengono ricreate a blocchi mentre nuoti.</p><p id="details">—</p><button class="tool glass" id="closeSettings">Chiudi</button></section>
 <div class="overlay" id="welcome"><div class="welcome"><div class="eyebrow">AN INTERACTIVE UNDERSEA STORYBOOK</div><div class="art">🐚 🪸 🐠</div><h2>Un oceano di<br><em>piccole meraviglie.</em></h2><p>Benvenuto nel primo mondo procedurale di Cozy Paw. Nuota tra coralli, foreste di alghe e rovine. Ogni seed conserva la disposizione del mondo.</p><button type="button" id="start" class="start">Inizia a nuotare ✦</button><small>Controlli touch oppure WASD + trascina il mouse · WebGL · Nessuna installazione</small></div></div>
-<div id="fallback" class="error" hidden><div><h2>Questo oceano ha bisogno di WebGL.</h2><p>Su questo browser l'accelerazione grafica non è disponibile.</p><a href="https://www.cozypawstudio.com/">Vai a Cozy Paw Studio</a></div></div>
+<div id="fallback" class="error" hidden><div><h2>Il browser non permette il disegno</h2><p>Prova ad aprire la Laguna direttamente in Chrome.</p><a href="https://www.cozypawstudio.com/">Vai a Cozy Paw Studio</a></div></div>
 <script>
 /* Cozy Paw Worlds · Procedural Reef M3 alpha · Original standalone WebGL, no dependencies. */
 (()=>{'use strict';
-const $=id=>document.getElementById(id),canvas=$('sea');
-const gl=canvas.getContext('webgl2',{antialias:false,alpha:false,powerPreference:'low-power',depth:true})||canvas.getContext('webgl',{antialias:false,alpha:false,powerPreference:'low-power',depth:true});
-if(!gl){$('fallback').hidden=false;return}
+// Compat mode: if WebGL is blocked by an in-app WebView, keep the reef playable in Canvas 2D.
+function startLiteMode(cause){
+  // A failed/previously created graphics context can lock a canvas to a different mode.
+  // Use a fresh canvas for the fallback, then keep the page fully touch-interactive.
+  const fresh=canvas.cloneNode(false);canvas.replaceWith(fresh);canvas=fresh;
+  let ctx=null;try{ctx=canvas.getContext('2d',{alpha:false,desynchronized:true})||canvas.getContext('2d')}catch(e){}
+  if(!ctx){
+    $('welcome').hidden=true;$('fallback').hidden=false;
+    $('fallback').innerHTML='<div><h2>La grafica è bloccata dal browser</h2><p>Apri questo indirizzo direttamente in <strong>Chrome</strong>, non nella finestra interna di ChatGPT o di un’altra app.</p><p><a href="https://www.cozypawstudio.com/">Vai a Cozy Paw Studio</a></p></div>';
+    return;
+  }
+  $('fallback').hidden=true;
+  const prm=new URLSearchParams(location.search),seed=(Number(prm.get('seed'))>>>0)||27021;
+  const mobile=matchMedia('(pointer: coarse)').matches||innerWidth<800;
+  const light=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  $('seedLabel').textContent='Seed '+seed;
+  $('welcome').querySelector('h2').innerHTML='Benvenuto nella <em>Laguna Lite</em>';
+  $('welcome').querySelector('p').textContent='Questo browser non consente il motore 3D. Puoi comunque nuotare in una versione illustrata e procedurale, con gli stessi comandi. Per il 3D completo prova ad aprire il link direttamente in Chrome.';
+  $('welcome').querySelector('small').textContent='Modalità compatibile Canvas 2D · Touch e tastiera · Nessuna installazione';
+  $('sceneTitle').querySelector('.eyebrow').textContent='CORAL REEF BESTIES · MODALITÀ COMPATIBILE';
+  $('sceneTitle').querySelector('p').textContent='Una laguna illustrata che cambia con il seed. Su Chrome, quando WebGL è disponibile, puoi visitarla in 3D.';
+  $('details').textContent='Renderer: Canvas 2D compatibile (non WebGL 3D). Stessi seed e mondo generativo semplificato.';
+  $('fpsLabel').textContent='FPS · LITE';
+  const cam={x:0,z:13,yaw:0,pitch:0},keys=new Set();
+  const input={jx:0,jy:0,joyId:null,lookId:null,lx:0,ly:0};
+  let begun=false,frame=0,last=0,lastDraw=0,time=0,dtAvg=33,quality='auto',scale=1;
+  let w=innerWidth,h=innerHeight,slows=0,fasts=0;
+  const palette=['#ff9eaa','#ffcd91','#c2a2fc','#f6a8d3','#7be3c8','#eac4a2'];
+  function hash(a,b,c=0){let n=(Math.imul(a|0,374761393)+Math.imul(b|0,668265263)+Math.imul(c|0,224682251)+seed)|0;n=Math.imul(n^(n>>>13),1274126177);return ((n^(n>>>16))>>>0)/4294967296;}
+  function biome(x,z){let v=Math.sin(x*.045+seed*.0001)*.28+Math.sin(z*.039-x*.015)*.23+Math.cos(z*.06+seed*.0002)*.29+.5;return v<.38?0:v<.73?1:2}
+  function resize(){w=Math.max(1,innerWidth);h=Math.max(1,innerHeight);let dpr=Math.min(devicePixelRatio||1,1.4);scale=quality==='low'?.58:quality==='high'?dpr:quality==='medium'?.8:Math.min(dpr,mobile?.83:1.15);canvas.width=Math.max(1,Math.floor(w*scale));canvas.height=Math.max(1,Math.floor(h*scale));ctx.setTransform(scale,0,0,scale,0,0);ctx.imageSmoothingEnabled=true;}
+  addEventListener('resize',resize,{passive:true});resize();
+  function project(x,y,z){const dx=x-cam.x,dz=z-cam.z,cs=Math.cos(cam.yaw),sn=Math.sin(cam.yaw),right=dx*cs+dz*sn,depth=dx*sn-dz*cs;if(depth<=1.2||depth>51)return null;const f=Math.min(w,h)*1.05,unit=f/depth,px=w*.5+right*unit,py=h*(.56+cam.pitch*.16)+(2.5-y)*unit;return {x:px,y:py,unit,depth}}
+  function drawBackground(t){
+    const bg=ctx.createLinearGradient(0,0,0,h);bg.addColorStop(0,'#075e80');bg.addColorStop(.52,'#087e94');bg.addColorStop(1,'#115b73');ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
+    const cx=w*.73,cy=-h*.18;const halo=ctx.createRadialGradient(cx,cy,4,cx,cy,Math.max(w,h)*.85);halo.addColorStop(0,'#b3edc650');halo.addColorStop(1,'#9fdac700');ctx.fillStyle=halo;ctx.fillRect(0,0,w,h);
+    ctx.save();ctx.globalCompositeOperation='screen';for(let i=0;i<6;i++){const x=cx+(i-3)*w*.14+(light?0:Math.sin(t*.08+i)*w*.017);ctx.fillStyle='rgba(190,250,207,.05)';ctx.beginPath();ctx.moveTo(x,-50);ctx.lineTo(x-w*.05,-50);ctx.lineTo(x-w*.19,h);ctx.lineTo(x+w*.10,h);ctx.fill()}ctx.restore();
+    ctx.fillStyle='#0b5668';ctx.beginPath();ctx.moveTo(0,h*.76);for(let x=0;x<=w+8;x+=8){let y=h*(.72+.06*Math.sin(x/w*7+seed*.01)+.03*Math.cos(x/w*14));ctx.lineTo(x,y)}ctx.lineTo(w,h);ctx.lineTo(0,h);ctx.fill();
+    let ground=ctx.createLinearGradient(0,h*.54,0,h);ground.addColorStop(0,'#4bb4a471');ground.addColorStop(.45,'#b4cfac88');ground.addColorStop(1,'#d6c3a2');ctx.fillStyle=ground;ctx.beginPath();ctx.moveTo(0,h*.64);ctx.quadraticCurveTo(w*.5,h*.58,w,h*.68);ctx.lineTo(w,h);ctx.lineTo(0,h);ctx.fill();
+    ctx.strokeStyle='#e5f8db30';ctx.lineWidth=1;for(let i=0;i<11;i++){let yy=h*(.69+i*i*.0032);ctx.beginPath();for(let x=0;x<=w+18;x+=18){let y=yy+Math.sin(x*.017+i*.8+((light?0:t)*.15))*2*(i/10);if(x===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)}ctx.stroke();}
+  }
+  function drawCoral(p,style,color,wind){const u=Math.min(p.unit,155);if(u<2.2)return;ctx.save();ctx.translate(p.x,p.y);ctx.scale(u,u);ctx.lineCap='round';
+    if(style===0){ // branching coral
+      ctx.strokeStyle='#664e7c';ctx.lineWidth=.14;ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(0,-1.45);ctx.stroke();ctx.strokeStyle=color;ctx.lineWidth=.095;
+      for(let k=-2;k<=2;k++){ctx.beginPath();ctx.moveTo(0,-.30-Math.abs(k)*.11);ctx.quadraticCurveTo(k*.16,-.75, k*.24,-1.22-Math.cos(k)*.33);ctx.stroke();ctx.beginPath();ctx.moveTo(k*.12,-.73);ctx.lineTo(k*.30+Math.sin(k)*.1,-1.05);ctx.stroke();}
+      ctx.fillStyle='#ffefdd';for(let k=-2;k<=2;k++){ctx.beginPath();ctx.arc(k*.24,-1.22-Math.cos(k)*.33,.055,0,7);ctx.fill()}
+    }else if(style===1){ // kelp fronds
+      for(let k=-2;k<=2;k++){ctx.strokeStyle=k%2?'#a5de86':'#77c9a2';ctx.lineWidth=.07;ctx.beginPath();ctx.moveTo(k*.18,0);ctx.bezierCurveTo(k*.06+wind,-.65,k*.23+wind,-1.36,k*.19+wind*1.6,-1.95-(k%3)*.2);ctx.stroke();for(let j=1;j<=5;j++){const yy=-j*.32,xx=k*.18+wind*(j/5);ctx.fillStyle=k%2?'#82cfa9':'#b4d996';ctx.beginPath();ctx.ellipse(xx+.18*Math.sin(j+k),yy,.28,.095, j*.35,0,7);ctx.fill()}}
+    }else if(style===2){ // fan coral
+      ctx.strokeStyle='#f5a4b4';ctx.lineWidth=.06;for(let k=-5;k<=5;k++){ctx.beginPath();ctx.moveTo(0,0);ctx.quadraticCurveTo(k*.13,-.72,k*.19,-1.30+Math.abs(k)*.04);ctx.stroke()}for(let j=0;j<4;j++){ctx.beginPath();ctx.moveTo(-.88+j*.1,-.65-j*.15);ctx.quadraticCurveTo(0,-.87-j*.14,.88-j*.1,-.65-j*.15);ctx.stroke()}
+    }else if(style===3){ // coral tables
+      ctx.strokeStyle='#9f829f';ctx.lineWidth=.15;ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(0,-.85);ctx.stroke();ctx.fillStyle=color;ctx.beginPath();ctx.ellipse(0,-.95,.92,.22,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#f9d8cf9a';ctx.beginPath();ctx.ellipse(-.15,-1.01,.52,.065,0,0,Math.PI*2);ctx.fill();
+    }else{ // sea rocks and pearl shells
+      ctx.fillStyle='#579b9d';ctx.beginPath();ctx.moveTo(-.72,0);ctx.lineTo(-.45,-.57);ctx.lineTo(.32,-.78);ctx.lineTo(.83,-.16);ctx.lineTo(.62,0);ctx.closePath();ctx.fill();ctx.fillStyle='#a7c8ba';ctx.beginPath();ctx.moveTo(-.45,-.57);ctx.lineTo(.32,-.78);ctx.lineTo(.08,-.12);ctx.closePath();ctx.fill();
+    }
+    ctx.restore();
+  }
+  function fish(x,y,s,c,flip=1){ctx.save();ctx.translate(x,y);ctx.scale(s*flip,s);ctx.fillStyle=c;ctx.beginPath();ctx.ellipse(0,0,1,.46,0,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.moveTo(-.9,0);ctx.lineTo(-1.45,-.5);ctx.lineTo(-1.35,.48);ctx.closePath();ctx.fill();ctx.fillStyle='#18465c';ctx.beginPath();ctx.arc(.55,-.10,.085,0,Math.PI*2);ctx.fill();ctx.restore()}
+  function drawObjects(t){const cell=3.7,ix0=Math.floor(cam.x/cell),iz0=Math.floor(cam.z/cell),items=[];
+    const bound=quality==='low'?7:quality==='medium'?8:10,density=quality==='low'?.48:quality==='medium'?.65:.78;
+    for(let iz=iz0-bound;iz<=iz0+bound;iz++)for(let ix=ix0-bound;ix<=ix0+bound;ix++){
+      const chance=hash(ix,iz,6);if(chance>density)continue;const x=(ix+.15+hash(ix,iz,1)*.7)*cell,z=(iz+.15+hash(ix,iz,2)*.7)*cell;let p=project(x,0,z);if(!p||p.x< -110||p.x>w+110||p.y< -180||p.y>h+160)continue;
+      let bt=biome(x,z),style=bt===2?(hash(ix,iz,7)<.8?1:2):bt===1?(hash(ix,iz,7)<.56?0:3):(hash(ix,iz,7)<.5?0:4);items.push({p,style,c:palette[Math.floor(hash(ix,iz,9)*palette.length)],wiggle:hash(ix,iz,12)});
+    }items.sort((a,b)=>b.p.depth-a.p.depth);for(const v of items)drawCoral(v.p,v.style,v.c,(light?0:Math.sin(t*.72+v.wiggle*6)*.11));
+    // The sanctuary is a fixed landmark in the same deterministic world.
+    let portal=project(0,0,-13);if(portal&&portal.x> -200&&portal.x<w+200&&portal.depth<45){let u=Math.min(100,portal.unit);ctx.save();ctx.translate(portal.x,portal.y);ctx.scale(u,u);ctx.strokeStyle='#deb8d9';ctx.lineWidth=.22;ctx.beginPath();ctx.moveTo(-1.28,0);ctx.lineTo(-1.28,-1.6);ctx.quadraticCurveTo(0,-3.4,1.28,-1.6);ctx.lineTo(1.28,0);ctx.stroke();ctx.strokeStyle='#f7e7c6';ctx.lineWidth=.05;ctx.beginPath();ctx.arc(0,-1.9,.5,0,7);ctx.stroke();ctx.fillStyle='#fce9b2';ctx.shadowBlur=18;ctx.shadowColor='#fff0c1';ctx.beginPath();ctx.arc(0,-1.9,.22,0,7);ctx.fill();ctx.restore();}
+  }
+  function drawLife(t){const cx=cam.x,cz=cam.z;
+    for(let i=0;i<(quality==='low'?7:14);i++){let yy=h*(.21+hash(i,1)*.42),xx=((hash(i,2)*w+t*(8+hash(i,3)*18)*(i%2?1:-1))%(w+70)+w+70)%(w+70)-35;fish(xx,yy,2.6+hash(i,5)*5,palette[i%palette.length],i%2?-1:1)}
+    ctx.lineWidth=1;for(let i=0;i<24;i++){let xx=(hash(i,20)*w+(light?0:Math.sin(t*.4+i)*8)),yy=(hash(i,21)*h+(light?0:t*(6+hash(i,24)*14)))%h;ctx.strokeStyle='rgba(205,248,239,.34)';ctx.beginPath();ctx.arc(xx,yy,1.3+hash(i,25)*2.7,0,Math.PI*2);ctx.stroke()}
+  }
+  function draw(now){if(document.hidden){requestAnimationFrame(draw);last=now;return}
+    // Time-based 30-FPS cap. Never skip every second frame: 30-Hz devices would drop to 15 FPS.
+    if(lastDraw && now-lastDraw<31){requestAnimationFrame(draw);return}
+    let dt=lastDraw?Math.min(.08,(now-lastDraw)/1000):.033;lastDraw=now;last=now;
+    dtAvg=dtAvg*.92+dt*1000*.08;frame++;
+    if(begun&&$('settings').hidden){let v=input.jx,j=-input.jy;if(keys.has('w')||keys.has('arrowup'))j+=1;if(keys.has('s')||keys.has('arrowdown'))j-=1;if(keys.has('a'))v-=1;if(keys.has('d'))v+=1;let speed= Math.min(dt,.08)*6/Math.max(1,Math.hypot(v,j));cam.x+=(Math.cos(cam.yaw)*v+Math.sin(cam.yaw)*j)*speed;cam.z+=(Math.sin(cam.yaw)*v-Math.cos(cam.yaw)*j)*speed;time+=(light?0:dt)}
+    ctx.setTransform(scale,0,0,scale,0,0);drawBackground(time);drawObjects(time);drawLife(time);
+    if(frame%20===1){$('fps').textContent=Math.min(60,Math.round(1000/Math.max(1,dtAvg)));$('biomeLabel').textContent=['Laguna luminosa','Giardino dei coralli','Foresta delle alghe'][biome(cam.x,cam.z)];$('poi').hidden=Math.hypot(cam.x,cam.z+13)>16;}
+    requestAnimationFrame(draw)
+  }
+  requestAnimationFrame(draw);
+  $('start').addEventListener('click',()=>{begun=true;$('welcome').hidden=true});
+  if(prm.has('autostart')){begun=true;$('welcome').hidden=true}
+  $('settingsBtn').addEventListener('click',()=>{$('settings').hidden=!$('settings').hidden});
+  $('closeSettings').addEventListener('click',()=>{$('settings').hidden=true});
+  $('quality').addEventListener('change',e=>{quality=e.target.value;resize()});
+  $('newWorld').addEventListener('click',()=>{location.search='?seed='+(((Math.random()*4294967295)>>>0)||1)+'&mode=lite'});
+  $('shareBtn').addEventListener('click',async()=>{const url=new URL(location.href);url.searchParams.set('seed',seed);url.searchParams.set('mode','lite');if(navigator.share){try{await navigator.share({title:'La Laguna delle Perle Lite',url:url.toString()});return}catch(e){if(e.name==='AbortError')return}}try{await navigator.clipboard.writeText(url.toString());$('shareBtn').textContent='Link copiato ✓';setTimeout(()=>$('shareBtn').textContent='Condividi seed',2100)}catch(e){$('shareBtn').textContent='Seed '+seed}});
+  canvas.addEventListener('pointerdown',e=>{if(!begun||!$('settings').hidden||(e.pointerType==='touch'&&e.clientX<innerWidth*.32))return;input.lookId=e.pointerId;input.lx=e.clientX;input.ly=e.clientY;canvas.setPointerCapture(e.pointerId)});
+  canvas.addEventListener('pointermove',e=>{if(e.pointerId!==input.lookId)return;let dx=e.clientX-input.lx,dy=e.clientY-input.ly;input.lx=e.clientX;input.ly=e.clientY;cam.yaw+=dx*.0047;cam.pitch=Math.max(-1,Math.min(1,cam.pitch-dy*.0032))});
+  const endLook=e=>{if(e.pointerId===input.lookId)input.lookId=null};canvas.addEventListener('pointerup',endLook);canvas.addEventListener('pointercancel',endLook);
+  const stick=$('joystick'),knob=$('joyKnob');function joy(e){let b=stick.getBoundingClientRect(),x=(e.clientX-b.left-b.width/2)/(b.width*.35),y=(e.clientY-b.top-b.height/2)/(b.height*.35),m=Math.max(1,Math.hypot(x,y));input.jx=x/m;input.jy=y/m;knob.style.transform=`translate(${input.jx*31}px,${input.jy*31}px)`}
+  stick.addEventListener('pointerdown',e=>{if(!begun||!$('settings').hidden)return;input.joyId=e.pointerId;stick.setPointerCapture(e.pointerId);joy(e)});stick.addEventListener('pointermove',e=>{if(e.pointerId===input.joyId)joy(e)});const endJoy=e=>{if(e.pointerId===input.joyId){input.joyId=null;input.jx=input.jy=0;knob.style.transform='none'}};stick.addEventListener('pointerup',endJoy);stick.addEventListener('pointercancel',endJoy);
+  document.addEventListener('keydown',e=>{let k=e.key.toLowerCase();if(begun&&['arrowup','arrowdown','arrowleft','arrowright',' '].includes(k))e.preventDefault();if(k==='escape')$('settings').hidden=true;keys.add(k)});document.addEventListener('keyup',e=>keys.delete(e.key.toLowerCase()));addEventListener('blur',()=>{keys.clear();input.jx=input.jy=0;knob.style.transform='none'});
+  Object.defineProperty(window,'__cozyReefDiagnostics',{get:()=>Object.freeze({seed,renderer:'canvas2d',mode:'lite',webgl:false,camera:{...cam},fps:Math.min(60,Math.round(1000/Math.max(1,dtAvg)))})});
+}
+const $=id=>document.getElementById(id);let canvas=$('sea');
+const mode=new URLSearchParams(location.search).get('mode');
+let gl=null;
+if(mode!=='lite'){
+  try{gl=canvas.getContext('webgl2',{antialias:false,alpha:false,powerPreference:'low-power',depth:true})||canvas.getContext('webgl',{antialias:false,alpha:false,powerPreference:'low-power',depth:true})||canvas.getContext('experimental-webgl',{antialias:false,alpha:false,depth:true})}catch(err){console.warn('WebGL context unavailable:',err)}
+}
+if(!gl){startLiteMode(mode==='lite'?'requested':'no-webgl');return}
+
 const query=new URLSearchParams(location.search);let seed=((Number(query.get('seed'))||27021)>>>0)||27021;
 $('seedLabel').textContent='Seed '+seed;
 const mobile=matchMedia('(pointer: coarse)').matches||innerWidth<800;
@@ -89,7 +192,7 @@ const skyVert=`attribute vec2 aXY;varying vec2 vUV;void main(){vUV=aXY*.5+.5;gl_
 const skyFrag=`precision mediump float;varying vec2 vUV;uniform float uTime;void main(){vec3 deep=vec3(.012,.18,.28),mid=vec3(.035,.43,.54),top=vec3(.13,.70,.69);vec3 c=mix(deep,mid,smoothstep(.0,.75,vUV.y));c=mix(c,top,smoothstep(.46,1.,vUV.y)*.82);float streak=sin(vUV.x*28.+uTime*.11+sin(vUV.y*4.)*2.)*sin(vUV.x*19.-uTime*.08);streak=pow(max(0.,streak),10.);c+=vec3(.08,.14,.12)*streak*max(0.,vUV.y-.36);float halo=1.-smoothstep(0.,.48,length((vUV-vec2(.59,.94))*vec2(1.2,1.4)));c+=vec3(.22,.23,.17)*halo*.36;gl_FragColor=vec4(c,1.);}`;
 const bubbleVert=`attribute vec3 aPos;attribute float aPhase;uniform mat4 uVP;uniform float uTime;uniform vec3 uEye;varying float vGlow;void main(){vec3 p=aPos;p.x+=uEye.x;p.z+=uEye.z;p.y=mod(p.y+uTime*(.22+aPhase*.15)+8.,8.)-2.1;vec4 clip=uVP*vec4(p,1.);gl_Position=clip;gl_PointSize=clamp(19./max(1.,clip.w),1.5,5.);vGlow=.4+aPhase*.35;}`;
 const bubbleFrag=`precision mediump float;varying float vGlow;void main(){float rr=length(gl_PointCoord-vec2(.5));float aa=(1.-smoothstep(.14,.49,rr))*.62;gl_FragColor=vec4(.66,.98,1.,aa*vGlow);}`;
-let seaProgram,skyProgram,bubbleProgram;try{seaProgram=makeProgram(vert,frag);skyProgram=makeProgram(skyVert,skyFrag);bubbleProgram=makeProgram(bubbleVert,bubbleFrag)}catch(err){console.error('Cozy Paw reef shader',err);$('fallback').hidden=false;return;}
+let seaProgram,skyProgram,bubbleProgram;try{seaProgram=makeProgram(vert,frag);skyProgram=makeProgram(skyVert,skyFrag);bubbleProgram=makeProgram(bubbleVert,bubbleFrag)}catch(err){console.warn('Cozy Paw reef shader; switching to Lite',err);startLiteMode('shader-failure');return;}
 geometry=gl.createBuffer();const skyBuffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,skyBuffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
 const particles=[];const r=randomFor(898,13);for(let i=0;i<210;i++)particles.push((r()-.5)*55,-2+r()*8,(r()-.5)*55,r());const bubbleBuffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,bubbleBuffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(particles),gl.STATIC_DRAW);
 const attr=(p,name,size,stride,off)=>{let loc=gl.getAttribLocation(p,name);if(loc<0)return;gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,size,gl.FLOAT,false,stride,off)};
