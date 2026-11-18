@@ -47,7 +47,7 @@ body{background:radial-gradient(circle at 50% 15%,#126d80 0%,#073c54 38%,#04182d
 <button type="button" data-coral-place="5">✧ Archi sommersi</button>
 <button type="button" data-coral-place="6">✧ Grotta delle perle</button>
 </div><div class="cozy-note">La vegetazione viene generata dal seed; le strutture del fondale sono ancora guidate.</div>
-<button type="button" id="cozy-seed-btn" style="width:100%;text-align:center;margin-top:.55em;min-height:2.7em">♻ Genera una nuova variante</button>
+<button type="button" id="cozy-seed-btn" style="width:100%;text-align:center;margin-top:.55em;min-height:2.7em">♻ Genera una nuova variante</button><button type="button" id="cozy-fps" style="width:100%;text-align:center;margin-top:.4em;min-height:2.7em">⏱ Mostra / nascondi FPS</button>
 <a href="https://www.cozypawstudio.com/" target="_blank" rel="noopener noreferrer" style="font:600 .65em system-ui;background:none;box-shadow:none;color:#bcf4e6;letter-spacing:0;margin-top:.3em;padding:.45em;text-decoration:underline">Visita Cozy Paw Studio</a>
 </section>
 <div id="cozy-seed">Mondo #<span id="cozy-seed-number"></span> · WEBGPU</div>
@@ -63,6 +63,7 @@ toggle.addEventListener('click',()=>{const open=places.classList.toggle('open');
 function sendKey(code,key){window.dispatchEvent(new KeyboardEvent('keydown',{code,key,bubbles:true}));window.dispatchEvent(new KeyboardEvent('keyup',{code,key,bubbles:true}))}
 for(const b of document.querySelectorAll('[data-coral-place]'))b.addEventListener('click',()=>{const num=b.dataset.coralPlace;closePlaces();sendKey('Digit'+num,num)});
 $('cozy-music').addEventListener('click',()=>sendKey('KeyM','m'));
+$('cozy-fps').addEventListener('click',()=>sendKey('KeyH','h'));
 $('cozy-menu').addEventListener('click',()=>{$('o').click();closePlaces()});
 $('cozy-seed-btn').addEventListener('click',()=>{
  const v=new Uint32Array(1);if(crypto&&crypto.getRandomValues)crypto.getRandomValues(v);else v[0]=(Date.now()^currentSeed)>>>0;
